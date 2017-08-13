@@ -1,5 +1,5 @@
 # FINT Relation Model
-Fint relation model for ´dotnet´
+Fint relation model for `dotnet`
 
 ## Installation
 
