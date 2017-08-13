@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>FINT.Relation.Model</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>FINTProsjektet</Authors>
+    <Description>Relation model for FINT</Description>
+    <SynchReleaseVersion>true</SynchReleaseVersion>
   </PropertyGroup>
 
 </Project>
