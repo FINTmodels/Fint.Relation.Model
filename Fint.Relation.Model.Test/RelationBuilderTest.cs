@@ -23,7 +23,8 @@ namespace Fint.Relation.Model.Test {
         public void CreateRelationOnTypeValueFieldInput () {
             Relation relation = Relation.NewBuilder ()
                 .With (TestEnum.TEST1).ForType (typeof (TestModel).Name.ToLower ())
-                .Value ("testvalue").Field ("systemid")
+                .Value ("testvalue")
+                .Field ("systemid")
                 .Build ();
             Assert.Equal ("${testmodel}/systemid/testvalue", relation.Link);
             Assert.Equal (TestEnum.TEST1.ToString ().ToLower (), relation.RelationName);            
