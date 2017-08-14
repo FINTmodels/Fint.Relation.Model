@@ -1,5 +1,4 @@
-﻿using System;
-namespace Fint.Relation.Model
+﻿namespace Fint.Relation.Model
 {
     public class Relation
     {
@@ -10,11 +9,6 @@ namespace Fint.Relation.Model
         {
             RelationName = relationName;
             Link = link;
-        }
-
-        public static RelationBuilder NewBuilder()
-        {
-            return new RelationBuilder();
         }
     }
 }

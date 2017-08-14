@@ -1,18 +1,23 @@
 ﻿using System;
+
 namespace Fint.Relation.Model
 {
     public class RelationBuilder
     {
-        string _relationName;
-        string _link;
-        string _type;
-        string _field;
-        string _value;
-
+        private readonly Relation _relation = new Relation(String.Empty, string.Empty);
+        private string _type;
+        private string _value;
+        private string _field;
 
         public RelationBuilder With<T>(T relation) where T : IConvertible
         {
-            _relationName = relation.ToString().ToLower();
+            _relation.RelationName = relation.ToString().ToLower();
+            return this;
+        }
+
+        public RelationBuilder Link(string link)
+        {
+            _relation.Link = link;
             return this;
         }
 
@@ -34,32 +39,24 @@ namespace Fint.Relation.Model
             return this;
         }
 
-        public RelationBuilder Link(string link)
-        {
-            _link = link;
-            return this;
-        }
-
         public Relation Build()
         {
-            if (_link == null || _link.Equals(""))
+            if (!string.IsNullOrEmpty(_relation.Link))
             {
-                if (_type == null || _value == null)
-                {
-                    throw new ArgumentException("Missing value to create Relation, either link value is set, or type, field and value");
-                }
-
-                if (_field == null)
-                {
-                    _link = string.Format("${{{0}}}/{1}", _type, _value);
-                }
-                else
-                {
-                    _link = string.Format("${{{0}}}/{1}/{2}", _type, _field, _value);
-                }
-                return new Relation(_relationName, _link);
+                return new Relation(_relation.RelationName, _relation.Link);
             }
-            return new Relation(_relationName, _link);
+
+            if (_type == null || _value == null)
+            {
+                throw new ArgumentException(
+                    "Missing value to create Relation, either link value is set, or type, field and value");
+            }
+
+            _relation.Link = _field == null
+                ? $"${{{_type}}}/{_value}"
+                : $"${{{_type}}}/{_field}/{_value}";
+
+            return new Relation(_relation.RelationName, _relation.Link);
         }
     }
 }
