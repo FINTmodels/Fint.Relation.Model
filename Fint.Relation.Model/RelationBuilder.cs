@@ -5,7 +5,7 @@ namespace Fint.Relation.Model
     public class RelationBuilder
     {
         private readonly Relation _relation = new Relation(String.Empty, string.Empty);
-        private string _type;
+        private Type _type;
         private string _value;
         private string _field;
 
@@ -21,7 +21,7 @@ namespace Fint.Relation.Model
             return this;
         }
 
-        public RelationBuilder ForType(string type)
+        public RelationBuilder ForType(Type type)
         {
             _type = type;
             return this;
@@ -52,11 +52,23 @@ namespace Fint.Relation.Model
                     "Missing value to create Relation, either link value is set, or type, field and value");
             }
 
+            var typeString = createType(_type);
             _relation.Link = _field == null
-                ? $"${{{_type}}}/{_value}"
-                : $"${{{_type}}}/{_field}/{_value}";
+                ? $"${{{typeString}}}/{_value}"
+                : $"${{{typeString}}}/{_field}/{_value}";
 
             return new Relation(_relation.RelationName, _relation.Link);
+        }
+
+        public static string createType(Type type)
+        {
+            return createType(type.FullName);
+        }
+
+        public static string createType(string type)
+        {
+            var fullName = type.ToLower();
+            return fullName.Replace(@"fint.model.", "");
         }
     }
 }

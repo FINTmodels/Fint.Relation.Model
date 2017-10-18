@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Fint.Relation.Model {
     public class FintResource<T> {
         public T Resource { get; set; }
-        public string Type { get; set; }
-        public List<Relation> Relasjoner { get; set; }
+        public List<Relation> Relations { get; set; }
 
         public FintResource () {
-            Relasjoner = new List<Relation> ();
+            Relations = new List<Relation> ();
         }
 
-        public FintResource (string type, T resource) {
-            Type = type;
+        public FintResource (T resource) {
             Resource = resource;
-            Relasjoner = new List<Relation> ();
+            Relations = new List<Relation> ();
         }
 
-        public FintResource<T> AddRelasjoner (params Relation[] relations) {
-            Relasjoner.AddRange (relations);
+        public FintResource<T> AddRelations (params Relation[] relations) {
+            Relations.AddRange (relations);
             return this;
         }
 
-        public FintResource<T> AddRelasjoner (List<Relation> relations) {
-            Relasjoner.AddRange (relations);
+        public FintResource<T> AddRelations (IEnumerable<Relation> relations) {
+            Relations.AddRange (relations);
             return this;
         }
 
         public static FintResource<T> With (T model) {
-            return new FintResource<T> ("no.fint.pwfa.model." + model.GetType().Name, model);
+            return new FintResource<T> (model);
         }
     }
 }

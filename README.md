@@ -3,7 +3,7 @@ Fint relation model for `dotnet`
 
 ## Installation
 
-* Add Bintray (nuget) repository ´https://api.bintray.com/nuget/fint/nuget´
+* Add Bintray (nuget) repository https://api.bintray.com/nuget/fint/nuget
 
 ## Usage
 
@@ -13,7 +13,7 @@ With type, field and value
 ```csharp
 Relation relation = Relation.NewBuilder ()
     .With (TestEnum.TEST1)
-    .ForType (typeof (TestModel).Name.ToLower ())
+    .ForType (typeof (TestModel))
     .Value ("testvalue")
     .Field ("systemid")
     .Build ();
@@ -22,7 +22,7 @@ or with type and value
 ```csharp
 Relation relation = Relation.NewBuilder ()
     .With (TestEnum.TEST1)
-    .ForType (typeof (TestModel).Name.ToLower ())
+    .ForType (typeof (TestModel))
     .Value ("testvalue")
     .Build ();
 ```

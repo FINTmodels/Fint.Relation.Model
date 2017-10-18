@@ -16,10 +16,11 @@ namespace Fint.Relation.Model.Test
         {
             var relation = new RelationBuilder()
                 .With(TestEnum.TEST1)
-                .ForType(typeof(TestModel).Name.ToLower())
+                .ForType(typeof(TestModel))
                 .Value("testvalue")
                 .Build();
-            Assert.Equal("${testmodel}/testvalue", relation.Link);
+            
+            Assert.Equal("${fint.relation.model.test.testmodel}/testvalue", relation.Link);
             Assert.Equal(TestEnum.TEST1.ToString().ToLower(), relation.RelationName);
         }
 
@@ -27,11 +28,13 @@ namespace Fint.Relation.Model.Test
         public void CreateRelationOnTypeValueFieldInput()
         {
             var relation = new RelationBuilder()
-                .With(TestEnum.TEST1).ForType(typeof(TestModel).Name.ToLower())
+                .With(TestEnum.TEST1)
+                .ForType(typeof(TestModel))
                 .Value("testvalue")
                 .Field("systemid")
                 .Build();
-            Assert.Equal("${testmodel}/systemid/testvalue", relation.Link);
+            
+            Assert.Equal("${fint.relation.model.test.testmodel}/systemid/testvalue", relation.Link);
             Assert.Equal(TestEnum.TEST1.ToString().ToLower(), relation.RelationName);
         }
 
@@ -45,6 +48,14 @@ namespace Fint.Relation.Model.Test
 
             Assert.Equal("http://localhost/test", relation.Link);
             Assert.Equal(TestEnum.TEST1.ToString().ToLower(), relation.RelationName);
+        }
+
+        [Fact]
+        public void CreateTypeStringGivenFintModelType()
+        {
+            var typeString = RelationBuilder.createType("FINT.Model.Administrasjon.Personal.Arbeidsforhold");
+            
+            Assert.Equal("administrasjon.personal.arbeidsforhold", typeString);
         }
     }
 }

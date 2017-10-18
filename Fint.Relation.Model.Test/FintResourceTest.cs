@@ -13,11 +13,10 @@ namespace Fint.Relation.Model.Test
                 .Link("http://localhost/test")
                 .Build();
 
-            FintResource<TestModel> fintResource = FintResource<TestModel>.With(testModel).AddRelasjoner(relation);
+            FintResource<TestModel> fintResource = FintResource<TestModel>.With(testModel).AddRelations(relation);
 
-            Assert.Equal(testModel.GetType().Name.ToLower(), fintResource.Type);
-            Assert.Equal(1, fintResource.Relasjoner.Count);
-            Assert.Equal(relation, fintResource.Relasjoner[0]);
+            Assert.Equal(1, fintResource.Relations.Count);
+            Assert.Equal(relation, fintResource.Relations[0]);
             Assert.Equal(testModel, fintResource.Resource);
         }
     }
