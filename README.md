@@ -3,7 +3,7 @@ Fint relation model for `dotnet`
 
 ## Installation
 
-* Add Bintray (nuget) repository https://api.bintray.com/nuget/fint/nuget
+* Add package from NuGet
 
 ## Usage
 

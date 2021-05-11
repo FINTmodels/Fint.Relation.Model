@@ -6,7 +6,8 @@
     <PackOnBuild>true</PackOnBuild>
     <PackageId>FINT.Relation.Model</PackageId>
     <PackageVersion>1.0.3</PackageVersion>
-    <Authors>FINTProsjektet</Authors>
+    <Company>Vigo IKS</Company>
+    <Authors>FINTLabs</Authors>
     <Description>Relation model for FINT</Description>
     <SynchReleaseVersion>true</SynchReleaseVersion>
   </PropertyGroup>
